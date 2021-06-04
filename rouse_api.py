@@ -2,7 +2,7 @@
 import json
 
 
-def calc_value(eq_model, eq_year):
+def calculate_values(eq_model, eq_year):
     """
     Take the model id and year, and returns an object
     containing the calculated values (Market and Auction).
@@ -14,7 +14,6 @@ def calc_value(eq_model, eq_year):
     with open("res/api-response.json", "r") as resp:
         data = json.load(resp)
 
-        # TODO: this notation is clunky; fix it
         cost = data[eq_model]["saleDetails"]["cost"]
         market_ratio = data[eq_model]["schedule"]["years"][eq_year]["marketRatio"]
         auction_ratio = data[eq_model]["schedule"]["years"][eq_year]["auctionRatio"]
@@ -26,13 +25,13 @@ def calc_value(eq_model, eq_year):
 
 if __name__ == "__main__":
     """ Main function """
-    
-    print("=====AMAZING BOB'S AUCTION HOUSE=====")
+
+    print("===== Bob's Large Things Auction =====")
     model = input(f"Enter a model number: ")
     year = input(f"Enter a year: ")
 
     try:
-        values = calc_value(model, year)
+        values = calculate_values(model, year)
         print(f"\nMarket Value : ${values['marketValue']:,.2f}")
         print(f"Auction Value: ${values['auctionValue']:,.2f}")
     except KeyError as error:

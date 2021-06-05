@@ -23,7 +23,6 @@ class TestRouseApi(TestCase):
         assert round(values["auctionValue"], 2) == 126089.53
 
     def test_calculate_invalid_values(self):
-        self.setUp()
         self.assertRaises(KeyError,
                           rouse_api.calculate_values,
                           self.control_data["invalid"]["id"],
